@@ -1,7 +1,7 @@
 import './globals.css'
 
 import localFont from 'next/font/local'
-import { Playfair_Display } from 'next/font/google'
+import { Playfair_Display, Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google'
 import Navbar from './components/Navbar.jsx'
 import WhatsAppFloat from './components/Whatsappfloat'
 import { i } from 'framer-motion/client'
@@ -140,6 +140,56 @@ export const metadata = {
   },
 };
 
+export const bebas = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+export const dmSans = DM_Sans({
+  subsets: ["latin"],
+});
+
+export const dmMono = DM_Mono({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+});
+
+const colors = {
+  black: "#0a0a0a",
+  white: "#f5f0e8",
+  accent: "#df3c3c",
+  grey: "#1a1a1a",
+  mid: "#2e2e2e",
+  muted: "#888",
+};
+
+const fonts = {
+  display: bebas.style.fontFamily,
+  body: dmSans.style.fontFamily,
+  mono: dmMono.style.fontFamily,
+};
+
+// const GlobalStyles = () => (
+//   <style>{`
+// html{scroll-behavior:smooth;},
+//     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+
+
+//     .nav-link { color: ${colors.muted}; text-decoration: none; font-size: 0.83rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+//     .nav-link:hover { color: ${colors.white}; }
+
+//     .footer-link { color: ${colors.muted}; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; display: block; }
+//     .footer-link:hover { color: ${colors.white}; }
+
+//     @media (max-width: 900px) {
+
+//       .nav-links-wrap { display: none !important; }
+
+//     }
+//   `}</style>
+// );
+
 
 
 export default function RootLayout({ children }) {
@@ -150,8 +200,10 @@ export default function RootLayout({ children }) {
     >
 
       <body className="antialiased font-sans">
-        <WhatsAppFloat whatsappLink="https://api.whatsapp.com/send/?phone=919068737471&text=Hi%21+I%27m+interested+in+your+services.+Let%27s+discuss+my+project" />
-        {/* <Navbar/> */}
+        {/* <GlobalStyles /> */}
+
+        <WhatsAppFloat whatsappLink="https://api.whatsapp.com/send/?phone=918755531096&text=Hi%21+I%27m+interested+in+your+services.+Let%27s+discuss+my+project" />
+        <Navbar />
         {children}
       </body>
     </html>

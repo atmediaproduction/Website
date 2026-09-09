@@ -261,21 +261,21 @@ export default function ATMediaSections() {
   const [videos, setVideos] = useState([]);
 
 
-useEffect(() => {
-  async function getVideos() {
-    try {
-      const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyBJD1oMTn9GbEehkrpUGHcWCfStlzi7JDg&channelId=UClJoLM1GrN-0rwoUzqY03AA&part=snippet,id&type=video&videoDuration=medium&order=date&maxResults=10`
+  useEffect(() => {
+    async function getVideos() {
+      try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyBJD1oMTn9GbEehkrpUGHcWCfStlzi7JDg&channelId=UClJoLM1GrN-0rwoUzqY03AA&part=snippet,id&type=video&videoDuration=medium&order=date&maxResults=10`
         );
-      const data = await res.json();
+        const data = await res.json();
 
-      setVideos(data.items || []);
-    } catch (err) {
-      console.error(err);
+        setVideos(data.items || []);
+      } catch (err) {
+        console.error(err);
+      }
     }
-  }
 
-  getVideos();
-}, []);
+    getVideos();
+  }, []);
 
   useEffect(() => {
     const io = new IntersectionObserver(
