@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 import ATMediaSections from "./components/ATMediaSections";
 import GlobalLeadModal from "./components/GlobalLeadModal";
 import { Bebas_Neue, DM_Sans, DM_Mono } from "next/font/google";
+import Nav from "./components/Navbar";
 
 export const bebas = Bebas_Neue({
   weight: "400",
@@ -170,182 +171,99 @@ const Heading = ({ children, style = {} }) => (
   </h2>
 );
 
-// ── NAV ──
-const Nav = () => {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-  const [open, setOpen] = useState(false);
 
-  return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "20px 5%",
-        background: scrolled ? "rgba(10,10,10,0.95)" : "rgba(10,10,10,0.7)",
-        backdropFilter: "blur(14px)",
-        borderBottom: `1px solid ${scrolled ? "#1e1e1e" : "transparent"}`,
-        transition: "all 0.3s ease",
-      }}
-    >
-      <GlobalLeadModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
-      <div
-        style={{
-          fontFamily: fonts.display,
-          fontSize: "2rem",
-          letterSpacing: "0.08em",
-          color: colors.accent,
-        }}
-      >
-        <img
-          src="/atlogo.png"
-          alt="AT Media"
-          style={{ height: 28, width: "auto" }}
-        />
-      </div>
-      <ul
-        className="nav-links-wrap"
-        style={{ display: "flex", gap: 36, listStyle: "none" }}
-      >
-        {["Services", "Process", "Who We Help", "Ambaa Talks"].map((item) => (
-          <li key={item}>
-            <a
-              href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-              className="nav-link"
-            >
-              {item}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <button
-        onClick={() => setOpen(true)}
-        href="#audit"
-        style={{
-          background: colors.accent,
-          color: colors.black,
-          border: "none",
-          padding: "10px 22px",
-          fontFamily: fonts.body,
-          fontWeight: 700,
-          fontSize: "0.83rem",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase",
-          cursor: "pointer",
-          textDecoration: "none",
-          transition: "opacity 0.2s",
-        }}
-      >
-        Free Audit
-      </button>
-    </nav>
-  );
-};
 
 // ── HERO ──
 const Hero = () => {
   const [open, setOpen] = useState(false);
 
   return (
-  <section
+    <section
 
-    style={{
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
-      padding: "140px 5% 100px",
-      position: "relative",
-      overflow: "hidden",
-      // background: colors.black,
-    }}
-    className="bg-gradient-to-b from-black to-[#4e1515]"
-  >
-    <div className="hero-bg-text">AT</div>
-    <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
-      <div
-        className="fade-up-1"
-        style={{
-          fontFamily: fonts.mono,
-          fontSize: "0.78rem",
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: colors.accent,
-          marginBottom: 24,
-          // display: "flex",
-          alignItems: "center",
-          gap: 10,
-                    textAlign: "center",
-          marginInline: "auto",
-        }}
-      >
-        
-        Content Agency
-      </div>
-      <h1
-        className="fade-up-2"
-        style={{
-          fontFamily: fonts.display,
-          fontSize: "clamp(64px, 10vw, 140px)",
-          lineHeight: 0.95,
-          letterSpacing: "0.02em",
-          marginBottom: 28,
-          color: colors.white,
-          textAlign: "center",
-        }}
-      >
-        We Turn Content
-        <br />
-        Into <span style={{ color: colors.accent }}>Growth.</span>
-      </h1>
-      <p
-        className="fade-up-3"
-        style={{
-          fontSize: "clamp(1rem, 1.4vw, 1.22rem)",
-          color: "#bbb",
-          maxWidth: 520,
-          marginBottom: 16,
-          lineHeight: 1.75,
-          fontFamily: fonts.body,
-          textAlign: "center",
-          marginInline: "auto",
-        }}
-      >
-        We help creators, founders, and podcasters transform raw footage into
-        high-performing short-form videos, scroll-stopping thumbnails, and
-        complete content systems.
-      </p>
-      <p
-        className="fade-up-3"
-        style={{
-          fontSize: "1.08rem",
-          color: colors.white,
-          fontWeight: 600,
-          marginBottom: 44,
-          fontFamily: fonts.body,
-                    textAlign: "center",
-          marginInline: "auto",
-        }}
-      >
-        Posting but not growing? We fix that.
-      </p>
-      <div
-        className="fade-up-4"
-        style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}
-      >
-        {/* <a
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        padding: "140px 5% 100px",
+        position: "relative",
+        overflow: "hidden",
+        // background: colors.black,
+      }}
+      className="bg-gradient-to-b from-black to-[#4e1515]"
+    >
+      <div className="hero-bg-text">AT</div>
+      <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+        <div
+          className="fade-up-1"
+          style={{
+            fontFamily: fonts.mono,
+            fontSize: "0.78rem",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: colors.accent,
+            marginBottom: 24,
+            // display: "flex",
+            alignItems: "center",
+            gap: 10,
+            textAlign: "center",
+            marginInline: "auto",
+          }}
+        >
+
+          Content Agency
+        </div>
+        <h1
+          className="fade-up-2"
+          style={{
+            fontFamily: fonts.display,
+            fontSize: "clamp(64px, 10vw, 140px)",
+            lineHeight: 0.95,
+            letterSpacing: "0.02em",
+            marginBottom: 28,
+            color: colors.white,
+            textAlign: "center",
+          }}
+        >
+          We Turn Content
+          <br />
+          Into <span style={{ color: colors.accent }}>Growth.</span>
+        </h1>
+        <p
+          className="fade-up-3"
+          style={{
+            fontSize: "clamp(1rem, 1.4vw, 1.22rem)",
+            color: "#bbb",
+            maxWidth: 520,
+            marginBottom: 16,
+            lineHeight: 1.75,
+            fontFamily: fonts.body,
+            textAlign: "center",
+            marginInline: "auto",
+          }}
+        >
+          We help creators, founders, and podcasters transform raw footage into
+          high-performing short-form videos, scroll-stopping thumbnails, and
+          complete content systems.
+        </p>
+        <p
+          className="fade-up-3"
+          style={{
+            fontSize: "1.08rem",
+            color: colors.white,
+            fontWeight: 600,
+            marginBottom: 44,
+            fontFamily: fonts.body,
+            textAlign: "center",
+            marginInline: "auto",
+          }}
+        >
+          Posting but not growing? We fix that.
+        </p>
+        <div
+          className="fade-up-4"
+          style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}
+        >
+          {/* <a
           href="#cta"
           style={{
             background: colors.accent,
@@ -359,43 +277,43 @@ const Hero = () => {
             transition: "opacity 0.2s",
           }}
         > */}
-          
-        {/* </a> */}
+
+          {/* </a> */}
 
 
-        <button
-        onClick={() => setOpen(true)}
-        // className="px-6 py-3 bg-red-500 rounded-xl text-white"
-        style={{
-            background: colors.accent,
-            color: colors.black,
-            padding: "16px 34px",
-            fontWeight: 700,
-            fontSize: "0.93rem",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            textDecoration: "none",
-            transition: "opacity 0.2s",
-          }}
-      >
-        Let's Talk
-      </button>
+          <button
+            onClick={() => setOpen(true)}
+            // className="px-6 py-3 bg-red-500 rounded-xl text-white"
+            style={{
+              background: colors.accent,
+              color: colors.black,
+              padding: "16px 34px",
+              fontWeight: 700,
+              fontSize: "0.93rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              textDecoration: "none",
+              transition: "opacity 0.2s",
+            }}
+          >
+            Let's Talk
+          </button>
 
-      <button
-        onClick={() => setOpen(true)}
-        className="btn-sec">
-          Get a Free Audit →
-      </button>
+          <button
+            onClick={() => setOpen(true)}
+            className="btn-sec">
+            Get a Free Audit →
+          </button>
 
-        
 
-      <GlobalLeadModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+
+          <GlobalLeadModal
+            isOpen={open}
+            onClose={() => setOpen(false)}
+          />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   )
 };
 
@@ -577,7 +495,7 @@ const serviceData = [
 const Services = () => (
   <section
     id="services"
-    style={{ padding: "100px 5%",  }}
+    style={{ padding: "100px 5%", }}
     className="-bg-conic-30 from-black to-[#4e1515]"
 
   >
@@ -1201,223 +1119,225 @@ const AmbaaSection = () => (
 );
 
 // ── FREE AUDIT ──
-const Audit = () =>{ 
+const Audit = () => {
   const [open, setOpen] = useState(false);
   return (
-  <section
-    id="audit"
-    style={{
-      padding: "100px 5%",
-      background: colors.accent,
-      color: colors.white,
-    }}
-  >
-    <GlobalLeadModal
+    <section
+      id="audit"
+      style={{
+        padding: "100px 5%",
+        background: colors.accent,
+        color: colors.white,
+      }}
+    >
+      <GlobalLeadModal
         isOpen={open}
         onClose={() => setOpen(false)}
       />
-    <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-      <SectionLabel dark>No Risk</SectionLabel>
-      <h2
-        style={{
-          fontFamily: fonts.display,
-          fontSize: "clamp(42px, 6vw, 80px)",
-          lineHeight: 0.95,
-          letterSpacing: "0.02em",
-          marginBottom: 20,
-        }}
-      >
-        Not Sure
-        <br />
-        What's Wrong?
-      </h2>
-      <div
-        className="two-col"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 80,
-          marginTop: 60,
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <p
-            style={{
-              fontSize: "1.03rem",
-              lineHeight: 1.82,
-              fontFamily: fonts.body,
-            }}
-          >
-            Send us your page. We'll go through your content and tell you
-            exactly what's holding you back — your hooks, your pacing, your
-            structure, your ideas.
-            <br />
-            <br />
-            No pitch. No pressure. Just an honest look at where the gaps are.
-          </p>
-          <button
-          onClick={() => setOpen(true)}
-            href="#"
-            style={{
-              background: colors.black,
-              padding: "18px 38px",
-              fontWeight: 700,
-              fontSize: "0.93rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              textDecoration: "none",
-              display: "inline-block",
-              marginTop: 36,
-              transition: "opacity 0.2s",
-            }}
-          >
-            Get Our Free Audit
-          </button>
-        </div>
-        <ul
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <SectionLabel dark>No Risk</SectionLabel>
+        <h2
           style={{
-            listStyle: "none",
-            display: "flex",
-            flexDirection: "column",
-            gap: 16,
+            fontFamily: fonts.display,
+            fontSize: "clamp(42px, 6vw, 80px)",
+            lineHeight: 0.95,
+            letterSpacing: "0.02em",
+            marginBottom: 20,
           }}
         >
-          {[
-            "Hook-by-hook breakdown and improvement notes",
-            "Editing and pacing feedback",
-            "Fresh content ideas for your niche",
-            "Specific growth suggestions you can action today",
-          ].map((item) => (
-            <li
-              key={item}
+          Not Sure
+          <br />
+          What's Wrong?
+        </h2>
+        <div
+          className="two-col"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 80,
+            marginTop: 60,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <p
               style={{
-                fontSize: "0.97rem",
-                color: colors.white,
-                fontWeight: 600,
-                display: "flex",
-                alignItems: "center",
-                gap: 14,
+                fontSize: "1.03rem",
+                lineHeight: 1.82,
                 fontFamily: fonts.body,
               }}
             >
-              <span
+              Send us your page. We'll go through your content and tell you
+              exactly what's holding you back — your hooks, your pacing, your
+              structure, your ideas.
+              <br />
+              <br />
+              No pitch. No pressure. Just an honest look at where the gaps are.
+            </p>
+            <button
+              onClick={() => setOpen(true)}
+              href="#"
+              style={{
+                background: colors.black,
+                padding: "18px 38px",
+                fontWeight: 700,
+                fontSize: "0.93rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.06em",
+                textDecoration: "none",
+                display: "inline-block",
+                marginTop: 36,
+                transition: "opacity 0.2s",
+              }}
+            >
+              Get Our Free Audit
+            </button>
+          </div>
+          <ul
+            style={{
+              listStyle: "none",
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+            }}
+          >
+            {[
+              "Hook-by-hook breakdown and improvement notes",
+              "Editing and pacing feedback",
+              "Fresh content ideas for your niche",
+              "Specific growth suggestions you can action today",
+            ].map((item) => (
+              <li
+                key={item}
                 style={{
-                  background: colors.white,
-                  color: colors.black,
-                  width: 26,
-                  height: 26,
+                  fontSize: "0.97rem",
+                  color: colors.white,
+                  fontWeight: 600,
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "0.8rem",
-                  flexShrink: 0,
+                  gap: 14,
+                  fontFamily: fonts.body,
                 }}
               >
-                ✓
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
+                <span
+                  style={{
+                    background: colors.white,
+                    color: colors.black,
+                    width: 26,
+                    height: 26,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "0.8rem",
+                    flexShrink: 0,
+                  }}
+                >
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
-);}
+    </section>
+  );
+}
 
 // ── FINAL CTA ──
 const FinalCTA = () => {
   const [open, setOpen] = useState(false);
   return (
-  <section
-    id="cta"
-    style={{
-      padding: "140px 5%",
-      background: colors.black,
-      textAlign: "center",
-    }}
-  >
-    <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-      <SectionLabel>Limited Spots</SectionLabel>
-      <h2
-        style={{
-          fontFamily: fonts.display,
-          fontSize: "clamp(52px, 9vw, 110px)",
-          lineHeight: 0.95,
-          letterSpacing: "0.02em",
-          marginBottom: 0,
-          color: colors.white,
-        }}
-      >
-        Ready To
-        <br />
-        <span style={{ color: colors.accent }}>Actually Grow?</span>
-      </h2>
-      <p
-        style={{
-          fontSize: "1.12rem",
-          color: "#999",
-          margin: "32px auto 48px",
-          maxWidth: 500,
-          lineHeight: 1.82,
-          fontFamily: fonts.body,
-        }}
-      >
-        If you're posting content and not getting results, it's not random —{" "}
-        <strong style={{ color: colors.white }}>there's a reason.</strong>
-        <br />
-        We'll find it. And we'll fix it.
-      </p>
-      <div
-        style={{
-          display: "flex",
-          gap: 16,
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <button
-        onClick={() => setOpen(true)}
-          href="#"
+    <section
+      id="cta"
+      style={{
+        padding: "140px 5%",
+        background: colors.black,
+        textAlign: "center",
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <SectionLabel>Limited Spots</SectionLabel>
+        <h2
           style={{
-            background: colors.accent,
-            color: colors.black,
-            padding: "16px 34px",
-            fontWeight: 700,
-            fontSize: "0.93rem",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            textDecoration: "none",
+            fontFamily: fonts.display,
+            fontSize: "clamp(52px, 9vw, 110px)",
+            lineHeight: 0.95,
+            letterSpacing: "0.02em",
+            marginBottom: 0,
+            color: colors.white,
           }}
         >
-          Let's Talk
-        </button>
-        <button
-        onClick={() => setOpen(true)}
-        href="#" className="dm-pill">
-          Get a Free Audit →
-        </button>
+          Ready To
+          <br />
+          <span style={{ color: colors.accent }}>Actually Grow?</span>
+        </h2>
+        <p
+          style={{
+            fontSize: "1.12rem",
+            color: "#999",
+            margin: "32px auto 48px",
+            maxWidth: 500,
+            lineHeight: 1.82,
+            fontFamily: fonts.body,
+          }}
+        >
+          If you're posting content and not getting results, it's not random —{" "}
+          <strong style={{ color: colors.white }}>there's a reason.</strong>
+          <br />
+          We'll find it. And we'll fix it.
+        </p>
+        <div
+          style={{
+            display: "flex",
+            gap: 16,
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            onClick={() => setOpen(true)}
+            href="#"
+            style={{
+              background: colors.accent,
+              color: colors.black,
+              padding: "16px 34px",
+              fontWeight: 700,
+              fontSize: "0.93rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              textDecoration: "none",
+            }}
+          >
+            Let's Talk
+          </button>
+          <button
+            onClick={() => setOpen(true)}
+            href="#" className="dm-pill">
+            Get a Free Audit →
+          </button>
+        </div>
+        <p
+          style={{
+            fontFamily: fonts.mono,
+            fontSize: "0.76rem",
+            color: colors.muted,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            marginTop: 28,
+          }}
+        >
+          We work with a limited number of clients — spots are intentionally kept
+          small.
+        </p>
       </div>
-      <p
-        style={{
-          fontFamily: fonts.mono,
-          fontSize: "0.76rem",
-          color: colors.muted,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          marginTop: 28,
-        }}
-      >
-        We work with a limited number of clients — spots are intentionally kept
-        small.
-      </p>
-    </div>
-    <GlobalLeadModal
+      <GlobalLeadModal
         isOpen={open}
         onClose={() => setOpen(false)}
       />
-  </section>
-);}
+    </section>
+  );
+}
 
 // ── FOOTER ──
 const Footer = () => (
@@ -1503,7 +1423,7 @@ export default function ATMedia() {
       }}
     >
       <GlobalStyles />
-      <Nav />
+      {/* <Nav /> */}
       <Hero />
       <Ticker />
       <Problem />
@@ -1527,7 +1447,7 @@ export default function ATMedia() {
       <Process />
       <WhoItsFor />
       <Different />
-      <ATMediaSections/>
+      <ATMediaSections />
       {/* <AmbaaSection /> */}
       <Audit />
       <FinalCTA />
